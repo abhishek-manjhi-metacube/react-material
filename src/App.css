@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.smartTable {
+  padding-left: 50px;
+  padding-right: 50px;
+}
