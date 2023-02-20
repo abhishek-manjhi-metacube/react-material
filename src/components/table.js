@@ -3,9 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import FormDialog from "./form-dialog";
 import { Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../redux/tableActions";
+import * as operations from "../redux/operations";
 
-export default function Table(mockDataProps) {
-  const [rows, addRows] = React.useState(mockDataProps.mockData);
+export default function Table() {
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.users);
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -34,10 +38,12 @@ export default function Table(mockDataProps) {
       description: "This column has a value getter and is not sortable.",
       sortable: false,
       width: 160,
-      valueGetter: (params) =>
-        `${params.getValue(params.id, "firstName") || ""} ${
+      valueGetter: (params) => {
+
+       return `${params.getValue(params.id, "firstName") || ""} ${
           params.getValue(params.id, "lastName") || ""
-        }`,
+        }`;
+      }
     },
     {
       field: "actions",
@@ -62,19 +68,11 @@ export default function Table(mockDataProps) {
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
-    addRows(preState => preState.filter(user => user.id !== row.id))
+    dispatch(removeUser(row));
   };
 
   const handleNewItem = (value) => {
-    addRows((preState) => [
-      ...preState,
-      {
-        id: preState.length + 1,
-        lastName: value.lastName || "",
-        firstName: value.firstName || "",
-        age: value.age || "",
-      },
-    ]);
+    operations.addNewUser(value)
   };
 
   return (
@@ -82,7 +80,7 @@ export default function Table(mockDataProps) {
       <FormDialog onFormSubmit={handleNewItem} />
       <div style={{ height: 400, width: "100%", display: "flex" }}>
         <DataGrid
-          rows={rows}
+          rows={userData}
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[5]}

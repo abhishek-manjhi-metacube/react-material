@@ -29,7 +29,6 @@ function FormDialog(tableProps) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
     if (Object.keys(inputs).length !== 0) {
       tableProps.onFormSubmit(inputs);
     }
