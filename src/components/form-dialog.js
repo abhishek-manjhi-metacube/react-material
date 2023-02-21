@@ -7,10 +7,12 @@ import {
   DialogTitle,
   TextField,
 } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
 function FormDialog(tableProps) {
   const [open, setOpen] = React.useState(false);
   const [inputs, setInputs] = React.useState({});
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -40,6 +42,15 @@ function FormDialog(tableProps) {
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         + Add User
       </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => navigate("/formik")}
+      >
+        + Formik
+      </Button>
+
       <Dialog
         open={open}
         onClose={handleClose}
