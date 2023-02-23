@@ -1,4 +1,4 @@
-import { ADD_USER, REMOVE_USER } from "./actionTypes";
+import { ADD_USER, GET_USERS_LIST, REMOVE_USER } from "./actionTypes";
 
 const addUser = (user) => {
   return {
@@ -14,5 +14,10 @@ const removeUser = (user) => {
   };
 };
 
-export { addUser, removeUser } ;
+const getAllUser = () => {
+  return {
+    type: GET_USERS_LIST,
+  };
+};
 
+export { addUser, removeUser, getAllUser };

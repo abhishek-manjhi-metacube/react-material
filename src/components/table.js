@@ -3,13 +3,19 @@ import { DataGrid } from "@mui/x-data-grid";
 import FormDialog from "./form-dialog";
 import { Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../redux/tableActions";
 import * as operations from "../redux/operations";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Table() {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.users);
+  const [userData, setUserData] = React.useState([]);
+  useEffect(() => {
+    const data = dispatch(operations.getUserList());
+    console.log(operations);
+  }, []);
+
+  // console.log(userData)
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -39,11 +45,10 @@ export default function Table() {
       sortable: false,
       width: 160,
       valueGetter: (params) => {
-
-       return `${params.getValue(params.id, "firstName") || ""} ${
+        return `${params.getValue(params.id, "firstName") || ""} ${
           params.getValue(params.id, "lastName") || ""
         }`;
-      }
+      },
     },
     {
       field: "actions",
@@ -68,11 +73,12 @@ export default function Table() {
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
-    dispatch(removeUser(row));
+    // dispatch(removeUser(row));
+    dispatch(operations.removeUser(row));
   };
 
   const handleNewItem = (value) => {
-    operations.addNewUser(value)
+    dispatch(operations.addNewUser(value));
   };
 
   return (
