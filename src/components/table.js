@@ -39,11 +39,10 @@ export default function Table() {
       sortable: false,
       width: 160,
       valueGetter: (params) => {
-
-       return `${params.getValue(params.id, "firstName") || ""} ${
+        return `${params.getValue(params.id, "firstName") || ""} ${
           params.getValue(params.id, "lastName") || ""
         }`;
-      }
+      },
     },
     {
       field: "actions",
@@ -72,11 +71,14 @@ export default function Table() {
   };
 
   const handleNewItem = (value) => {
-    operations.addNewUser(value)
+    operations.addNewUser(value);
   };
 
   return (
     <>
+      <div>
+        <h1>Smart table</h1>
+      </div>
       <FormDialog onFormSubmit={handleNewItem} />
       <div style={{ height: 400, width: "100%", display: "flex" }}>
         <DataGrid

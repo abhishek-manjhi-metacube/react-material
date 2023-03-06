@@ -56,7 +56,15 @@ function FormDialog(tableProps) {
         color="primary"
         onClick={() => navigate("/formik-yup")}
       >
-        + Formik Yup
+        Formik Yup
+      </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => navigate("/users")}
+      >
+        Users
       </Button>
 
       <Dialog

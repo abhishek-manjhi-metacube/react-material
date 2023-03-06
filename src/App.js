@@ -3,12 +3,13 @@ import "./App.css";
 import BasicForm from "./components/basic-form";
 import FormikYup from "./components/formik-yup";
 import Table from "./components/table";
+import Users from "./components/users";
 
 function App() {
   return (
     <div className="App">
       <header>
-        <h1>Smart Table</h1>
+        {/* <h1>Smart Table</h1> */}
       </header>
       <div className="smartTable">
         <Router>
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Table />} />
             <Route path="/formik" element={<BasicForm />} />
             <Route path="/formik-yup" element={<FormikYup />} />
+            <Route path="/users" element={<Users />} />
           </Routes>
         </Router>
       </div>
