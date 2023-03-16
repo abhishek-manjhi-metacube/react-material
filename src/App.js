@@ -1,7 +1,5 @@
 import "./App.css";
 import Table from "./components/table";
-import mockData from "./utils/mock.json";
-
 
 function App() {
   return (
@@ -10,7 +8,7 @@ function App() {
         <h1>Smart Table</h1>
       </header>
       <div className="smartTable">
-        <Table mockData={mockData} />
+        <Table />
       </div>
     </div>
   );
