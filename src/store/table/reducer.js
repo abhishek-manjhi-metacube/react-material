@@ -1,6 +1,6 @@
-import { ADD_USER, GET_USERS_LIST, REMOVE_USER } from "./actionTypes";
-import mockData from "../utils/mock.json";
-import { combineReducers } from "@reduxjs/toolkit";
+import * as types from "./types";
+import mockData from "../../utils/mock.json";
+import { combineReducers } from "redux";
 
 const initialState = {
   users: mockData,
@@ -8,7 +8,7 @@ const initialState = {
 
 const tableReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER: {
+    case types.ADD_USER: {
       return {
         users: [
           ...state.users,
@@ -21,20 +21,20 @@ const tableReducer = (state = initialState, action) => {
         ],
       };
     }
-    case REMOVE_USER:
+    case types.REMOVE_USER:
       return {
         ...state.users,
         users: state.users.filter((user) => user.id !== action.payload.id),
       };
-    case GET_USERS_LIST:
-      return {...state};
+    case types.GET_USERS_LIST:
+      return {...state.users};
     default:
       return state;
   }
 };
 
-const rootReducer = combineReducers({
-  tableReducer,
+const reducer = combineReducers({
+  table: tableReducer,
 });
 
-export default rootReducer;
+export default reducer;

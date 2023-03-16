@@ -1,22 +1,23 @@
-import { ADD_USER, GET_USERS_LIST, REMOVE_USER } from "./actionTypes";
+import * as types from "./types";
 
 const addUser = (user) => {
   return {
-    type: ADD_USER,
+    type: types.ADD_USER,
     payload: user,
   };
 };
 
 const removeUser = (user) => {
   return {
-    type: REMOVE_USER,
+    type: types.REMOVE_USER,
     payload: user,
   };
 };
 
-const getAllUser = () => {
+const getAllUser = (data) => {
   return {
-    type: GET_USERS_LIST,
+    type: types.GET_USERS_LIST,
+    payload: data
   };
 };
 
