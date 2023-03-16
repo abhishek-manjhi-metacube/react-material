@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import BasicForm from "./components/basic-form";
+import FormikYup from "./components/formik-yup";
 import Table from "./components/table";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Table />} />
             <Route path="/formik" element={<BasicForm />} />
+            <Route path="/formik-yup" element={<FormikYup />} />
           </Routes>
         </Router>
       </div>
